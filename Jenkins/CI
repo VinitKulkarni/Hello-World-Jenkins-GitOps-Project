@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Pull') {
+            steps {
+                git url: 'https://github.com/VinitKulkarni/Hello-World-Jenkins-GitOps-Project.git', branch: 'main'
+            }
+        }
+        
+        stage('Test Phase-1') {
+            steps {
+                echo "CODE TESTING STARTED PHASE-1"
+                echo "CODE TESTING DONE PHASE-1"
+            }
+        }
+        
+        stage('Test Phase-2') {
+            steps {
+                echo "CODE TESTING STARTED PHASE-2"
+                echo "CODE TESTING DONE PHASE-2"
+            }
+        }
+    }
+    post {
+        success {
+            echo 'The Hello-World-CI pipeline was successful!'
+            // Trigger the next pipeline after the current pipeline finishes successfully
+            build job: 'Hello-World-CD', wait: false  // Set wait to false so the current pipeline doesn't wait for the next one
+        }
+    }
+}
