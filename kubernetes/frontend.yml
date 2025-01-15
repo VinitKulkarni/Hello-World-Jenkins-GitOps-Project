@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: helloworld-container
-        image: vinitkulkarni/helloworldtest:19
+        image: vinitkulkarni/helloworldtest:{BUILD_ID}
         ports:
         - containerPort: 80
